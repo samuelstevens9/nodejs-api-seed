@@ -1,0 +1,12 @@
+{
+  "name": "MyApp",
+  "version": "0.0.3",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "cors": "^2.7.1",
+    "express": "~4.8.8",
+    "jsonwebtoken": "^5.4.1",
+    "mongoose": "^4.2.3",
+    "morgan": "^1.6.1"
+  }
+}
