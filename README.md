@@ -1,6 +1,8 @@
 # README #
 
-My seed projet for Node.JS API server
+Sam's seed projet for Node.JS API server. Clone, then change remote to your new project repository:
+  
+    git remote set-url origin git://new.location
 
 ### Requires ###
 

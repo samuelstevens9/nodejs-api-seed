@@ -1,5 +1,5 @@
 {
-  "name": "node-messenger",
+  "name": "nodejs-api-seed",
   "version": "0.0.1",
   "scripts": {
     "start": "node server.js",
