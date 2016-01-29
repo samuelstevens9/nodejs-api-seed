@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
+var bcrypt = require('bcryptjs');
 var User = mongoose.model('User');
 
 var router = express.Router();
@@ -8,7 +9,6 @@ var router = express.Router();
 module.exports = function(app){
   
   router.post('/',function(req,res){
-    console.log(req.body);
     // find the user
     User.findOne({
       email: req.body.email
@@ -22,23 +22,25 @@ module.exports = function(app){
       if (!user) {
         res.json({ success: false, message: 'Authentication failed. User not found.' });
       } else if (user) {
-
-        // check if password matches
-        if (user.password != req.body.password) {
+        // Load hash from your password DB.
+        // check if password matches bcrypt.compareSync("B4c0/\/", hash);
+        if (!bcrypt.compareSync(req.body.password, user.password)) {
           res.json({ success: false, message: 'Authentication failed. Wrong password.' });
         } else {
 
           // if user is found and password is right
           // create a token
-          var token = jwt.sign(user, app.get('superSecret'), {
-            expiresIn: 24*60*60 // expires in 24 hours
+          //TODO: user.toObject() will actually set the token expiration, user will not; for testing no expiration
+          var token = jwt.sign({_id:user._id}, app.get('superSecret'), {
+            //expiresIn: 7*24*60*60 // expires in 24 hours
           });
           
           // return the information including token as JSON
           res.json({
             success: true,
             message: 'Enjoy your token!',
-            token: token
+            token: token,
+            user: user.toObject()
           });
         }   
 
@@ -46,7 +48,7 @@ module.exports = function(app){
 
     });
   });
-
+  
   return router;
   
 }

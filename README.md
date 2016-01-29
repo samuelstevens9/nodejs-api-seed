@@ -8,7 +8,7 @@ My seed projet for Node.JS API server
  * npm
  * mongodb
 
-### Usefull ###
+### Useful ###
 
  * robomongo : to view mongodb 
 
@@ -18,19 +18,26 @@ My seed projet for Node.JS API server
 
 ### To initialize data ###
 
-    $ node init_data.js
-
-Then hit CTRL+C to exit when it is finished. If you want to reset the data, you will need to manually DROP meptech from mongodb.
-
-### To start server ###
-
-First make sure mongoDB is running
+First make sure mongoDB is running. Open a new command prompt and run:
 
     $ mongod
 
-Then to run the API locally
+Now open a new command prompt and initialize the data.
+
+    $ node init_data.js
+    
+    /api/authenticate/init_data_m3rv311
+
+Then hit CTRL+C to exit when it is finished. If you want to reset the data, you will need to manually DROP DB from mongodb.
+Default User: admin@phyteck.com, password; physician@phyteck.com, password
+
+### To start server ###
+
+
+Make sure mongod is running. Now open a new command prompt to run the API locally.
 
     $ node server.js
+
 
 ### Usage ###
 

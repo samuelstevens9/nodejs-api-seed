@@ -1,12 +1,20 @@
 {
-  "name": "MyApp",
-  "version": "0.0.3",
+  "name": "node-messenger",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node server.js",
+    "prod": "node server.js",
+    "init_data": "node init_data.js"
+  },
   "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "node-uuid": "^1.4.7",
     "body-parser": "^1.14.1",
     "cors": "^2.7.1",
     "express": "~4.8.8",
     "jsonwebtoken": "^5.4.1",
     "mongoose": "^4.2.3",
-    "morgan": "^1.6.1"
+    "morgan": "^1.6.1",
+    "socket.io": "^1.3.7"
   }
 }

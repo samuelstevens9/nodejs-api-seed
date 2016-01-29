@@ -13,7 +13,10 @@ var get_model_from_collection = function(collection){
   
   return model;
 }
-
+router.use(function(req, res, next){
+  console.log('Generic Collection Controller!');
+  next();
+});
 router.route('/:collection')
 
   .get(function(req,res){
@@ -31,7 +34,7 @@ router.route('/:collection')
     if(!req.user.admin) { res.json({}); return; }
     var model = get_model_from_collection(req.params.collection);
     var m = new model(req.body);      // create a new instance of the User model
-    
+    console.log(m);
     m.save(function(err) {
         if (err){
           res.send(err);
@@ -61,7 +64,31 @@ router.route('/:collection/:_id')
       
     });
   })
-
+  .put(function(req, res) {
+    if(!req.user.admin) { res.json({}); return; }
+    var model = get_model_from_collection(req.params.collection);
+    model.findById(req.params._id,function(err,m){
+      if (err){
+        res.send(err);
+        return;
+      }
+      m = req.body; //TODO: not as dangerous!
+      m.save(function(err) {
+          if (err){
+            res.send(err);
+            return;
+          }
+          var model_name = req.params.collection.charAt(0).toUpperCase() + req.params.collection.slice(1);
+          var rj = {message: req.params.collection+' created!'}
+          rj[req.params.collection] = m;
+          res.json(rj);
+      });
+    })
+    
+    
+    
+      
+  })
 ;
 
 module.exports = router;

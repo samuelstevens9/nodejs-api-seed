@@ -6,16 +6,20 @@ var UserSchema = new Schema({
     required: true,
     unique: true
   },
-  password: {
+  api_token: {
     type: String,
     required: true,
   },
   first_name: { type: String },
   last_name: { type: String },
-  api_token: String,
 	admin: { type: Boolean },
   role: { type: String },
+  /*
+  Global Admin
+  Messenger
+  */
   
+  meta_data: {},
 });
 
 module.exports = mongoose.model('User', UserSchema);
